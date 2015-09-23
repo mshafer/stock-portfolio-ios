@@ -15,7 +15,7 @@ class MasterViewController: UITableViewController {
         Holding(symbol: "MRP.NZ", name: "Mighty River Powahhhhhhhhhhhhh Ltd.", numberOfShares: 832, totalPurchasePrice: 2080, currencyCode: "NZD"),
         Holding(symbol: "GNE.NZ", name: "Genesis Energy Ltd.", numberOfShares: 1376, totalPurchasePrice: 2064, currencyCode: "JPY")
     ]
-
+    var stockQuoteService: StockQuoteService = YahooStockQuoteService()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +28,11 @@ class MasterViewController: UITableViewController {
             let controllers = split.viewControllers
             self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
+        
+        stockQuoteService.getQuotesForHoldings(self.holdings, onCompletion: { _ in }, onError: { _ in print("Ooops") } )
+        
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -44,6 +49,13 @@ class MasterViewController: UITableViewController {
         holdings.insert(Holding(symbol: "HEY", name: "Heyoo", numberOfShares: 1000, totalPurchasePrice: 10000, currencyCode: "NZD"), atIndex: 0)
         let indexPath = NSIndexPath(forRow: 0, inSection: 0)
         self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+    }
+    
+    // MARK: - Refresh model
+    
+    func refresh(sender:AnyObject) {
+        print("I'm gonna refresh now!")
+        self.refreshControl?.endRefreshing()
     }
 
     // MARK: - Segues

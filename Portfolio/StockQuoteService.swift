@@ -12,5 +12,5 @@ protocol StockQuoteService {
 
         :param: holdings A list of holdings to update
     */
-    func getQuotesForHoldings(holdings: [Holding], completion: (holdings: [Holding]) -> ())
+    func getQuotesForHoldings(holdings: [Holding], onCompletion: (holdings: [Holding]) -> (), onError: () -> ())
 }

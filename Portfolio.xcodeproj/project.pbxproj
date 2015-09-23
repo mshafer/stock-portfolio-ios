@@ -20,6 +20,11 @@
 		4E1940381BB16E86004423F7 /* HoldingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1940371BB16E86004423F7 /* HoldingTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		4E19403B1BB230E4004423F7 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E19403A1BB230E4004423F7 /* Util.swift */; settings = {ASSET_TAGS = (); }; };
 		4E19403F1BB23F71004423F7 /* Colours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E19403E1BB23F71004423F7 /* Colours.swift */; settings = {ASSET_TAGS = (); }; };
+		4E1940421BB2506D004423F7 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 4E1940411BB2506D004423F7 /* Cartfile */; settings = {ASSET_TAGS = (); }; };
+		4E1940441BB251AE004423F7 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E1940431BB251AE004423F7 /* Alamofire.framework */; };
+		4E1940451BB251AE004423F7 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4E1940431BB251AE004423F7 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4E1940491BB28B38004423F7 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E1940481BB28B38004423F7 /* SwiftyJSON.framework */; };
+		4E19404A1BB28B38004423F7 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4E1940481BB28B38004423F7 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		502BB382954D3C6A3F956540 /* YahooStockQuoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502BB413884BBA78DBD7FF6E /* YahooStockQuoteService.swift */; };
 		502BB852FA4D7F0F2FAFF530 /* StockQuoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502BB99E70776BDFC713119A /* StockQuoteService.swift */; };
 /* End PBXBuildFile section */
@@ -41,6 +46,21 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		4E1940461BB251AE004423F7 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				4E19404A1BB28B38004423F7 /* SwiftyJSON.framework in Embed Frameworks */,
+				4E1940451BB251AE004423F7 /* Alamofire.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		4E193FFA1BB15F41004423F7 /* Portfolio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Portfolio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E193FFD1BB15F42004423F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +81,9 @@
 		4E1940371BB16E86004423F7 /* HoldingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoldingTableViewCell.swift; sourceTree = "<group>"; };
 		4E19403A1BB230E4004423F7 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		4E19403E1BB23F71004423F7 /* Colours.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colours.swift; sourceTree = "<group>"; };
+		4E1940411BB2506D004423F7 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
+		4E1940431BB251AE004423F7 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		4E1940481BB28B38004423F7 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		502BB413884BBA78DBD7FF6E /* YahooStockQuoteService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YahooStockQuoteService.swift; sourceTree = "<group>"; };
 		502BB99E70776BDFC713119A /* StockQuoteService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockQuoteService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -70,6 +93,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E1940491BB28B38004423F7 /* SwiftyJSON.framework in Frameworks */,
+				4E1940441BB251AE004423F7 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,6 +118,9 @@
 		4E193FF11BB15F41004423F7 = {
 			isa = PBXGroup;
 			children = (
+				4E1940481BB28B38004423F7 /* SwiftyJSON.framework */,
+				4E1940431BB251AE004423F7 /* Alamofire.framework */,
+				4E1940411BB2506D004423F7 /* Cartfile */,
 				4E193FFC1BB15F41004423F7 /* Portfolio */,
 				4E1940131BB15F42004423F7 /* PortfolioTests */,
 				4E19401E1BB15F42004423F7 /* PortfolioUITests */,
@@ -191,6 +219,8 @@
 				4E193FF61BB15F41004423F7 /* Sources */,
 				4E193FF71BB15F41004423F7 /* Frameworks */,
 				4E193FF81BB15F41004423F7 /* Resources */,
+				4E1940461BB251AE004423F7 /* Embed Frameworks */,
+				4E1940471BB25209004423F7 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -289,6 +319,7 @@
 			files = (
 				4E19400A1BB15F42004423F7 /* LaunchScreen.storyboard in Resources */,
 				4E1940071BB15F42004423F7 /* Assets.xcassets in Resources */,
+				4E1940421BB2506D004423F7 /* Cartfile in Resources */,
 				4E1940051BB15F42004423F7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -308,6 +339,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4E1940471BB25209004423F7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4E193FF61BB15F41004423F7 /* Sources */ = {
@@ -465,6 +514,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Portfolio/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mshafer.Portfolio;
@@ -476,6 +529,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Portfolio/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mshafer.Portfolio;
@@ -550,6 +607,7 @@
 				4E1940261BB15F42004423F7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4E1940271BB15F42004423F7 /* Build configuration list for PBXNativeTarget "PortfolioTests" */ = {
 			isa = XCConfigurationList;
@@ -558,6 +616,7 @@
 				4E1940291BB15F42004423F7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4E19402A1BB15F42004423F7 /* Build configuration list for PBXNativeTarget "PortfolioUITests" */ = {
 			isa = XCConfigurationList;
@@ -566,6 +625,7 @@
 				4E19402C1BB15F42004423F7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
