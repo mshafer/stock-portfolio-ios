@@ -155,6 +155,7 @@
                                 <connections>
                                     <outlet property="changeTodayAsPercentage" destination="M3f-fq-g3E" id="Ach-wr-GG8"/>
                                     <outlet property="changeTodayInDollars" destination="GZk-uh-GjL" id="0Hx-PA-8If"/>
+                                    <outlet property="constraintNameAndQuantityPriceHorizontalSpace" destination="I6Q-0T-pIf" id="hRb-8v-h13"/>
                                     <outlet property="currentValue" destination="F8N-cT-Q8t" id="Wp1-n7-fOA"/>
                                     <outlet property="name" destination="SEH-bM-95y" id="9mU-CC-0bQ"/>
                                     <outlet property="quantityAndPrice" destination="6db-zC-NqP" id="S7V-zb-CE2"/>

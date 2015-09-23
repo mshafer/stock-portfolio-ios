@@ -99,6 +99,14 @@ class MasterViewController: UITableViewController {
         // Return false if you do not want the specified item to be editable.
         return true
     }
+    
+    override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+        if self.tableView.editing {
+            return .Delete
+        } else {
+            return .None
+        }
+    }
 
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
@@ -108,6 +116,28 @@ class MasterViewController: UITableViewController {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
     }
+    
+    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true // Yes, the table view can be reordered
+    }
+    
+    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
+        let holding = holdings[fromIndexPath.row]
+        holdings.removeAtIndex(fromIndexPath.row)
+        holdings.insert(holding, atIndex: toIndexPath.row)
+    }
+    
+//    override func tableView(tableView: UITableView, willBeginEditingRowAtIndexPath indexPath: NSIndexPath) {
+//        print("Will edit cell")
+//        let holdingCell = tableView.cellForRowAtIndexPath(indexPath) as! HoldingTableViewCell
+//        holdingCell.setVisibilityOfValues(false)
+//    }
+//    
+//    override func tableView(tableView: UITableView, didEndEditingRowAtIndexPath indexPath: NSIndexPath) {
+//        print("Finished editing cell")
+//        let holdingCell = tableView.cellForRowAtIndexPath(indexPath) as! HoldingTableViewCell
+//        holdingCell.setVisibilityOfValues(true)
+//    }
     
     // MARK: Table cell render functions
     
