@@ -12,6 +12,11 @@ class YahooStockQuoteService: StockQuoteService {
     var YAHOO_STOCK_FIELDS: [String] = ["Symbol", "Name", "PreviousClose", "LastTradePriceOnly", "Currency"]
 
     func getQuotesForHoldings(holdings: [Holding], onCompletion: (holdings: [Holding]) -> (), onError: () -> ()) {
+        if holdings.count == 0 {
+            onCompletion(holdings: holdings)
+            return
+        }
+        
         let allSymbols = holdings.map { $0.symbol }
         let symbols = Array(Set(allSymbols)) // Remove duplicates
         let query = yqlQueryForSymbols(symbols)
@@ -40,7 +45,7 @@ class YahooStockQuoteService: StockQuoteService {
         return [
             "select",
             YAHOO_STOCK_FIELDS.joinWithSeparator(","),
-            "from yahoo.finance.quote where symbol in (",
+            "from yahoo.finance.quotes where symbol in (",
             quotedSymbols.joinWithSeparator(","),
             ")"
         ].joinWithSeparator(" ")
@@ -65,5 +70,7 @@ class YahooStockQuoteService: StockQuoteService {
         }
         
         print(quotes)
+        
+        onCompletion(holdings: [])
     }
 }

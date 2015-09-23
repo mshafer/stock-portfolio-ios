@@ -11,28 +11,38 @@ import UIKit
 class MasterViewController: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
-    var holdings: [Holding] = [
-        Holding(symbol: "MRP.NZ", name: "Mighty River Powahhhhhhhhhhhhh Ltd.", numberOfShares: 832, totalPurchasePrice: 2080, currencyCode: "NZD"),
-        Holding(symbol: "GNE.NZ", name: "Genesis Energy Ltd.", numberOfShares: 1376, totalPurchasePrice: 2064, currencyCode: "JPY")
-    ]
+    var holdings: [Holding] = []
     var stockQuoteService: StockQuoteService = YahooStockQuoteService()
+    var userHoldingsService: UserHoldingsService = UserHoldingsService()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
 
+        // Set up the Add button
         let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewObject:")
         self.navigationItem.rightBarButtonItem = addButton
+        
+        // Configure the detailViewController
         if let split = self.splitViewController {
             let controllers = split.viewControllers
             self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
         
-        stockQuoteService.getQuotesForHoldings(self.holdings, onCompletion: { _ in }, onError: { _ in print("Ooops") } )
-        
         self.refreshControl = UIRefreshControl()
         self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        self.tableView.setContentOffset(CGPointMake(0, -self.refreshControl!.frame.size.height), animated: true)
+        self.refreshControl?.beginRefreshing()
+        self.refresh(self)
+        
+        // For debugging
+//        let holdings = [
+//            Holding(symbol: "MRP.NZ", name: "Mighty River Power Ltd.", numberOfShares: 832, totalPurchasePrice: 2080, currencyCode: "NZD"),
+//            Holding(symbol: "GNE.NZ", name: "Genesis Energy Ltd.", numberOfShares: 1376, totalPurchasePrice: 2064, currencyCode: "JPY")
+//        ]
+//        userHoldingsService.saveUserHoldings(self.holdings)
+//        self.holdings = userHoldingsService.loadUserHoldings()
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -55,7 +65,13 @@ class MasterViewController: UITableViewController {
     
     func refresh(sender:AnyObject) {
         print("I'm gonna refresh now!")
-        self.refreshControl?.endRefreshing()
+        self.holdings = userHoldingsService.loadUserHoldings()
+        stockQuoteService.getQuotesForHoldings(self.holdings,
+            onCompletion: { _ in
+                self.tableView.reloadData()
+                self.refreshControl?.endRefreshing()
+            },
+            onError: { _ in print("Ooops") } )
     }
 
     // MARK: - Segues

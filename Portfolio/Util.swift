@@ -27,4 +27,8 @@ class Util {
         }
         return formatter.stringFromNumber(NSNumber(double: value))!
     }
+    
+    class func documentsDirectory() -> NSString {
+        return NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
+    }
 }

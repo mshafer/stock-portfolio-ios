@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Holding {
+class Holding: NSObject, NSCoding {
     // Required values
     var symbol: String
     var name: String
@@ -48,5 +48,31 @@ class Holding {
         self.numberOfShares = numberOfShares
         self.totalPurchasePrice = totalPurchasePrice
         self.currencyCode = currencyCode
+    }
+    
+    // MARK: NSCoding
+    
+    required convenience init?(coder decoder: NSCoder) {
+        print("Calling init with coder")
+        guard let symbol = decoder.decodeObjectForKey("symbol") as? String,
+            let name = decoder.decodeObjectForKey("name") as? String,
+            let currencyCode = decoder.decodeObjectForKey("currencyCode") as? String
+            else { return nil }
+        
+        self.init(
+            symbol: symbol,
+            name: name,
+            numberOfShares: decoder.decodeIntegerForKey("numberOfShares"),
+            totalPurchasePrice: decoder.decodeDoubleForKey("totalPurchasePrice"),
+            currencyCode: currencyCode
+        )
+    }
+    
+    func encodeWithCoder(coder: NSCoder) {
+        coder.encodeObject(self.symbol, forKey: "symbol")
+        coder.encodeObject(self.name, forKey: "name")
+        coder.encodeInt(Int32(self.numberOfShares), forKey: "numberOfShares")
+        coder.encodeDouble(self.totalPurchasePrice, forKey: "totalPurchasePrice")
+        coder.encodeObject(self.currencyCode, forKey: "currencyCode")
     }
 }

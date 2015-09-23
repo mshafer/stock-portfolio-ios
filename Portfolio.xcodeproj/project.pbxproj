@@ -25,6 +25,7 @@
 		4E1940451BB251AE004423F7 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4E1940431BB251AE004423F7 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4E1940491BB28B38004423F7 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E1940481BB28B38004423F7 /* SwiftyJSON.framework */; };
 		4E19404A1BB28B38004423F7 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4E1940481BB28B38004423F7 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4E19404C1BB2B155004423F7 /* UserHoldingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E19404B1BB2B155004423F7 /* UserHoldingsService.swift */; settings = {ASSET_TAGS = (); }; };
 		502BB382954D3C6A3F956540 /* YahooStockQuoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502BB413884BBA78DBD7FF6E /* YahooStockQuoteService.swift */; };
 		502BB852FA4D7F0F2FAFF530 /* StockQuoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502BB99E70776BDFC713119A /* StockQuoteService.swift */; };
 /* End PBXBuildFile section */
@@ -84,6 +85,7 @@
 		4E1940411BB2506D004423F7 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		4E1940431BB251AE004423F7 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		4E1940481BB28B38004423F7 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
+		4E19404B1BB2B155004423F7 /* UserHoldingsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserHoldingsService.swift; sourceTree = "<group>"; };
 		502BB413884BBA78DBD7FF6E /* YahooStockQuoteService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YahooStockQuoteService.swift; sourceTree = "<group>"; };
 		502BB99E70776BDFC713119A /* StockQuoteService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockQuoteService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -205,6 +207,7 @@
 			children = (
 				502BB99E70776BDFC713119A /* StockQuoteService.swift */,
 				502BB413884BBA78DBD7FF6E /* YahooStockQuoteService.swift */,
+				4E19404B1BB2B155004423F7 /* UserHoldingsService.swift */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E19404C1BB2B155004423F7 /* UserHoldingsService.swift in Sources */,
 				4E1940021BB15F42004423F7 /* DetailViewController.swift in Sources */,
 				4E1940381BB16E86004423F7 /* HoldingTableViewCell.swift in Sources */,
 				4E1940311BB1643D004423F7 /* Holding.swift in Sources */,
