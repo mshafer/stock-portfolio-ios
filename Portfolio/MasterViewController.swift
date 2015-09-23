@@ -12,8 +12,8 @@ class MasterViewController: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
     var holdings: [Holding] = [
-        Holding(symbol: "MRP.NZ", numberOfShares: 832, totalPurchasePrice: 2080),
-        Holding(symbol: "GNE.NZ", numberOfShares: 1376, totalPurchasePrice: 2064)
+        Holding(symbol: "MRP.NZ", name: "Mighty River Powahhhhhhhhhhhhh Ltd.", numberOfShares: 832, totalPurchasePrice: 2080, currencyCode: "NZD"),
+        Holding(symbol: "GNE.NZ", name: "Genesis Energy Ltd.", numberOfShares: 1376, totalPurchasePrice: 2064, currencyCode: "JPY")
     ]
 
 
@@ -41,7 +41,7 @@ class MasterViewController: UITableViewController {
     }
 
     func insertNewObject(sender: AnyObject) {
-        holdings.insert(Holding(symbol: "HEY", numberOfShares: 1000, totalPurchasePrice: 10000), atIndex: 0)
+        holdings.insert(Holding(symbol: "HEY", name: "Heyoo", numberOfShares: 1000, totalPurchasePrice: 10000, currencyCode: "NZD"), atIndex: 0)
         let indexPath = NSIndexPath(forRow: 0, inSection: 0)
         self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
     }
@@ -73,8 +73,13 @@ class MasterViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("HoldingCell", forIndexPath: indexPath) as! HoldingTableViewCell
 
-        let object = holdings[indexPath.row]
-        cell.symbol!.text = object.symbol
+        let holding = holdings[indexPath.row]
+        holding.closingPrice = 2.50
+        holding.currentPrice = 2.48
+        
+        setHoldingValues(holding, inTableViewCell: cell)
+        setColours(holding, inTableViewCell: cell)
+        
         return cell
     }
 
@@ -91,7 +96,44 @@ class MasterViewController: UITableViewController {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
     }
-
+    
+    // MARK: Table cell render functions
+    
+    func setHoldingValues(holding: Holding, inTableViewCell cell: HoldingTableViewCell) {
+        cell.symbol.text = holding.symbol
+        cell.name.text = holding.name
+        cell.currentValue.text = Util.currencyToString(holding.currentValue, currencyCode: holding.currencyCode)
+        cell.quantityAndPrice.text = holdingQuantityAndPrice(holding)
+        cell.quantityAndPrice.sizeToFit()
+        cell.changeTodayInDollars.text = Util.currencyToString(holding.changeTodayAsDollars, currencyCode: holding.currencyCode)
+        cell.changeTodayAsPercentage.text = doubleToPercentage(holding.changeTodayAsFraction)
+    }
+    
+    func setColours(holding: Holding, inTableViewCell cell: HoldingTableViewCell) {
+        let colour: UIColor
+        if (holding.changeTodayAsDollars >= 0) {
+            colour = UIColor(hex: "#45BF55")
+        } else {
+            colour = UIColor.dangerColor()
+        }
+        
+        cell.changeTodayInDollars.textColor = colour
+        cell.changeTodayAsPercentage.textColor = colour
+    }
+    
+    // MARK: - Computed strings for display in the UI
+    
+    func holdingQuantityAndPrice(holding: Holding) -> String {
+        return [
+            String(holding.numberOfShares),
+            "@",
+            Util.currencyToString(holding.currentPrice!, currencyCode: holding.currencyCode)
+        ].joinWithSeparator("")
+    }
+    
+    func doubleToPercentage(value: Double) -> String {
+        return String(format: "%.1f%%", value * 100)
+    }
 
 }
 

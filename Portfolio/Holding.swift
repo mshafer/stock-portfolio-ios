@@ -11,13 +11,14 @@ import Foundation
 class Holding {
     // Required values
     var symbol: String
+    var name: String
     var numberOfShares: Int
     var totalPurchasePrice: Double
+    var currencyCode: String
     
     // Optional values
     var closingPrice: Double?
     var currentPrice: Double?
-    var currency: String?
     
     // Computed properties
     var closingValue: Double {
@@ -41,9 +42,11 @@ class Holding {
         }
     }
     
-    init(symbol: String, numberOfShares: Int, totalPurchasePrice: Double) {
+    init(symbol: String, name: String, numberOfShares: Int, totalPurchasePrice: Double, currencyCode: String) {
         self.symbol = symbol
+        self.name = name
         self.numberOfShares = numberOfShares
         self.totalPurchasePrice = totalPurchasePrice
+        self.currencyCode = currencyCode
     }
 }

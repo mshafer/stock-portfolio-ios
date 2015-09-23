@@ -18,6 +18,10 @@
 		4E19402E1BB162AC004423F7 /* BaseSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E19402D1BB162AC004423F7 /* BaseSplitViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		4E1940311BB1643D004423F7 /* Holding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1940301BB1643D004423F7 /* Holding.swift */; settings = {ASSET_TAGS = (); }; };
 		4E1940381BB16E86004423F7 /* HoldingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1940371BB16E86004423F7 /* HoldingTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
+		4E19403B1BB230E4004423F7 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E19403A1BB230E4004423F7 /* Util.swift */; settings = {ASSET_TAGS = (); }; };
+		4E19403F1BB23F71004423F7 /* Colours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E19403E1BB23F71004423F7 /* Colours.swift */; settings = {ASSET_TAGS = (); }; };
+		502BB382954D3C6A3F956540 /* YahooStockQuoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502BB413884BBA78DBD7FF6E /* YahooStockQuoteService.swift */; };
+		502BB852FA4D7F0F2FAFF530 /* StockQuoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502BB99E70776BDFC713119A /* StockQuoteService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +59,10 @@
 		4E19402D1BB162AC004423F7 /* BaseSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseSplitViewController.swift; sourceTree = "<group>"; };
 		4E1940301BB1643D004423F7 /* Holding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Holding.swift; sourceTree = "<group>"; };
 		4E1940371BB16E86004423F7 /* HoldingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoldingTableViewCell.swift; sourceTree = "<group>"; };
+		4E19403A1BB230E4004423F7 /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		4E19403E1BB23F71004423F7 /* Colours.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colours.swift; sourceTree = "<group>"; };
+		502BB413884BBA78DBD7FF6E /* YahooStockQuoteService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YahooStockQuoteService.swift; sourceTree = "<group>"; };
+		502BB99E70776BDFC713119A /* StockQuoteService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockQuoteService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +113,8 @@
 		4E193FFC1BB15F41004423F7 /* Portfolio */ = {
 			isa = PBXGroup;
 			children = (
+				4E1940401BB244B4004423F7 /* Service */,
+				4E1940391BB230DA004423F7 /* Util */,
 				4E1940321BB16A05004423F7 /* Views */,
 				4E19402F1BB16416004423F7 /* Model */,
 				4E193FFD1BB15F42004423F7 /* AppDelegate.swift */,
@@ -151,6 +161,24 @@
 				4E1940371BB16E86004423F7 /* HoldingTableViewCell.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		4E1940391BB230DA004423F7 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				4E19403A1BB230E4004423F7 /* Util.swift */,
+				4E19403E1BB23F71004423F7 /* Colours.swift */,
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
+		4E1940401BB244B4004423F7 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				502BB99E70776BDFC713119A /* StockQuoteService.swift */,
+				502BB413884BBA78DBD7FF6E /* YahooStockQuoteService.swift */,
+			);
+			name = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -290,8 +318,12 @@
 				4E1940381BB16E86004423F7 /* HoldingTableViewCell.swift in Sources */,
 				4E1940311BB1643D004423F7 /* Holding.swift in Sources */,
 				4E1940001BB15F42004423F7 /* MasterViewController.swift in Sources */,
+				4E19403B1BB230E4004423F7 /* Util.swift in Sources */,
 				4E19402E1BB162AC004423F7 /* BaseSplitViewController.swift in Sources */,
 				4E193FFE1BB15F42004423F7 /* AppDelegate.swift in Sources */,
+				4E19403F1BB23F71004423F7 /* Colours.swift in Sources */,
+				502BB852FA4D7F0F2FAFF530 /* StockQuoteService.swift in Sources */,
+				502BB382954D3C6A3F956540 /* YahooStockQuoteService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
