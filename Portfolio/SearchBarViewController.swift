@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchBarViewController: UITableViewController {
+class SearchBarViewController: UITableViewController, UISearchControllerDelegate, UISearchBarDelegate {
 
     // MARK: - Properties
     
@@ -26,6 +26,8 @@ class SearchBarViewController: UITableViewController {
         // Create the search controller and make it perform the results updating.
         searchController = UISearchController(searchResultsController: searchResultsController)
         searchController.searchResultsUpdater = searchResultsController
+        searchController.delegate = self as UISearchControllerDelegate
+        searchController.searchBar.delegate = self as UISearchBarDelegate
         searchController.hidesNavigationBarDuringPresentation = false
         
         /*
@@ -45,5 +47,18 @@ class SearchBarViewController: UITableViewController {
         // Include the search bar within the navigation bar.
         navigationItem.titleView = searchController.searchBar
         definesPresentationContext = true
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        searchController.active = true
+    }
+    
+    func didPresentSearchController(searchController: UISearchController) {
+        searchController.becomeFirstResponder()
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
 }
