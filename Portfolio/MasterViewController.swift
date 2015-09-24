@@ -57,7 +57,7 @@ class MasterViewController: UITableViewController {
     }
 
     func insertNewObject(sender: AnyObject) {
-        holdings.insert(Holding(symbol: "HEY", name: "Heyoo", numberOfShares: 1000, totalPurchasePrice: 10000, currencyCode: "NZD"), atIndex: 0)
+        holdings.insert(Holding(symbol: "AIR.NZ", name: "Air New Zealand", numberOfShares: 1000, totalPurchasePrice: 10000, currencyCode: "NZD"), atIndex: 0)
         let indexPath = NSIndexPath(forRow: 0, inSection: 0)
         self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
     }
@@ -65,7 +65,6 @@ class MasterViewController: UITableViewController {
     // MARK: - Refresh model
     
     func refresh(sender:AnyObject) {
-        print("I'm gonna refresh now!")
         self.holdings = userHoldingsService.loadUserHoldings()
         stockQuoteService.getQuotesForHoldings(self.holdings,
             onCompletion: self.onRefreshSuccess,
@@ -142,6 +141,7 @@ class MasterViewController: UITableViewController {
         if editingStyle == .Delete {
             holdings.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            userHoldingsService.saveUserHoldings(self.holdings)
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
@@ -155,6 +155,7 @@ class MasterViewController: UITableViewController {
         let holding = holdings[fromIndexPath.row]
         holdings.removeAtIndex(fromIndexPath.row)
         holdings.insert(holding, atIndex: toIndexPath.row)
+        self.userHoldingsService.saveUserHoldings(self.holdings)
     }
 }
 
