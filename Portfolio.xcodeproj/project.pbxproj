@@ -32,6 +32,7 @@
 		4E1940591BB3FC1A004423F7 /* SearchBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1940581BB3FC1A004423F7 /* SearchBarViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		4E19405B1BB40596004423F7 /* StockSearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E19405A1BB40596004423F7 /* StockSearchResultTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		4E7905E51BB41103001AE3FE /* NewHoldingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7905E41BB41103001AE3FE /* NewHoldingViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		4E7905E71BB4192F001AE3FE /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4E7905E61BB4192F001AE3FE /* LICENSE.txt */; settings = {ASSET_TAGS = (); }; };
 		502BB382954D3C6A3F956540 /* YahooStockQuoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502BB413884BBA78DBD7FF6E /* YahooStockQuoteService.swift */; };
 		502BB852FA4D7F0F2FAFF530 /* StockQuoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502BB99E70776BDFC713119A /* StockQuoteService.swift */; };
 /* End PBXBuildFile section */
@@ -98,6 +99,7 @@
 		4E1940581BB3FC1A004423F7 /* SearchBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBarViewController.swift; sourceTree = "<group>"; };
 		4E19405A1BB40596004423F7 /* StockSearchResultTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockSearchResultTableViewCell.swift; sourceTree = "<group>"; };
 		4E7905E41BB41103001AE3FE /* NewHoldingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewHoldingViewController.swift; sourceTree = "<group>"; };
+		4E7905E61BB4192F001AE3FE /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		502BB413884BBA78DBD7FF6E /* YahooStockQuoteService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YahooStockQuoteService.swift; sourceTree = "<group>"; };
 		502BB99E70776BDFC713119A /* StockQuoteService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockQuoteService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -165,6 +167,7 @@
 				4E1940061BB15F42004423F7 /* Assets.xcassets */,
 				4E1940081BB15F42004423F7 /* LaunchScreen.storyboard */,
 				4E19400B1BB15F42004423F7 /* Info.plist */,
+				4E7905E61BB4192F001AE3FE /* LICENSE.txt */,
 			);
 			path = Portfolio;
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 				4E19400A1BB15F42004423F7 /* LaunchScreen.storyboard in Resources */,
 				4E1940071BB15F42004423F7 /* Assets.xcassets in Resources */,
 				4E1940421BB2506D004423F7 /* Cartfile in Resources */,
+				4E7905E71BB4192F001AE3FE /* LICENSE.txt in Resources */,
 				4E1940051BB15F42004423F7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
