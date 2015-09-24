@@ -22,7 +22,7 @@ class MasterViewController: UITableViewController {
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
 
         // Set up the Add button
-        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewObject:")
+        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "showSearchScreen:")
         self.navigationItem.rightBarButtonItem = addButton
         
         // Configure the detailViewController
@@ -54,6 +54,11 @@ class MasterViewController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func showSearchScreen(sender: AnyObject) {
+        let searchNavigationController = self.storyboard?.instantiateViewControllerWithIdentifier("SearchNavigationController")
+        self.presentViewController(searchNavigationController!, animated: true, completion: nil)
     }
 
     func insertNewObject(sender: AnyObject) {

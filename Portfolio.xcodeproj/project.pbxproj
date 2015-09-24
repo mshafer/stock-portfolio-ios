@@ -26,6 +26,10 @@
 		4E1940491BB28B38004423F7 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E1940481BB28B38004423F7 /* SwiftyJSON.framework */; };
 		4E19404A1BB28B38004423F7 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4E1940481BB28B38004423F7 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4E19404C1BB2B155004423F7 /* UserHoldingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E19404B1BB2B155004423F7 /* UserHoldingsService.swift */; settings = {ASSET_TAGS = (); }; };
+		4E1940531BB3C236004423F7 /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1940521BB3C236004423F7 /* SearchResultsViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		4E1940551BB3C7E1004423F7 /* SearchNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1940541BB3C7E1004423F7 /* SearchNavigationController.swift */; settings = {ASSET_TAGS = (); }; };
+		4E1940571BB3EB66004423F7 /* StockSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1940561BB3EB66004423F7 /* StockSearchResult.swift */; settings = {ASSET_TAGS = (); }; };
+		4E1940591BB3FC1A004423F7 /* SearchBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1940581BB3FC1A004423F7 /* SearchBarViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		502BB382954D3C6A3F956540 /* YahooStockQuoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502BB413884BBA78DBD7FF6E /* YahooStockQuoteService.swift */; };
 		502BB852FA4D7F0F2FAFF530 /* StockQuoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502BB99E70776BDFC713119A /* StockQuoteService.swift */; };
 /* End PBXBuildFile section */
@@ -86,6 +90,10 @@
 		4E1940431BB251AE004423F7 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		4E1940481BB28B38004423F7 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		4E19404B1BB2B155004423F7 /* UserHoldingsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserHoldingsService.swift; sourceTree = "<group>"; };
+		4E1940521BB3C236004423F7 /* SearchResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
+		4E1940541BB3C7E1004423F7 /* SearchNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchNavigationController.swift; sourceTree = "<group>"; };
+		4E1940561BB3EB66004423F7 /* StockSearchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockSearchResult.swift; sourceTree = "<group>"; };
+		4E1940581BB3FC1A004423F7 /* SearchBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBarViewController.swift; sourceTree = "<group>"; };
 		502BB413884BBA78DBD7FF6E /* YahooStockQuoteService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YahooStockQuoteService.swift; sourceTree = "<group>"; };
 		502BB99E70776BDFC713119A /* StockQuoteService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockQuoteService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -143,18 +151,16 @@
 		4E193FFC1BB15F41004423F7 /* Portfolio */ = {
 			isa = PBXGroup;
 			children = (
+				4E19404D1BB3C14A004423F7 /* Controller */,
 				4E1940401BB244B4004423F7 /* Service */,
 				4E1940391BB230DA004423F7 /* Util */,
-				4E1940321BB16A05004423F7 /* Views */,
+				4E1940321BB16A05004423F7 /* View */,
 				4E19402F1BB16416004423F7 /* Model */,
 				4E193FFD1BB15F42004423F7 /* AppDelegate.swift */,
-				4E193FFF1BB15F42004423F7 /* MasterViewController.swift */,
-				4E1940011BB15F42004423F7 /* DetailViewController.swift */,
 				4E1940031BB15F42004423F7 /* Main.storyboard */,
 				4E1940061BB15F42004423F7 /* Assets.xcassets */,
 				4E1940081BB15F42004423F7 /* LaunchScreen.storyboard */,
 				4E19400B1BB15F42004423F7 /* Info.plist */,
-				4E19402D1BB162AC004423F7 /* BaseSplitViewController.swift */,
 			);
 			path = Portfolio;
 			sourceTree = "<group>";
@@ -181,16 +187,17 @@
 			isa = PBXGroup;
 			children = (
 				4E1940301BB1643D004423F7 /* Holding.swift */,
+				4E1940561BB3EB66004423F7 /* StockSearchResult.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
 		};
-		4E1940321BB16A05004423F7 /* Views */ = {
+		4E1940321BB16A05004423F7 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				4E1940371BB16E86004423F7 /* HoldingTableViewCell.swift */,
 			);
-			name = Views;
+			name = View;
 			sourceTree = "<group>";
 		};
 		4E1940391BB230DA004423F7 /* Util */ = {
@@ -210,6 +217,19 @@
 				4E19404B1BB2B155004423F7 /* UserHoldingsService.swift */,
 			);
 			name = Service;
+			sourceTree = "<group>";
+		};
+		4E19404D1BB3C14A004423F7 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4E193FFF1BB15F42004423F7 /* MasterViewController.swift */,
+				4E1940011BB15F42004423F7 /* DetailViewController.swift */,
+				4E19402D1BB162AC004423F7 /* BaseSplitViewController.swift */,
+				4E1940521BB3C236004423F7 /* SearchResultsViewController.swift */,
+				4E1940541BB3C7E1004423F7 /* SearchNavigationController.swift */,
+				4E1940581BB3FC1A004423F7 /* SearchBarViewController.swift */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -373,8 +393,12 @@
 				4E1940001BB15F42004423F7 /* MasterViewController.swift in Sources */,
 				4E19403B1BB230E4004423F7 /* Util.swift in Sources */,
 				4E19402E1BB162AC004423F7 /* BaseSplitViewController.swift in Sources */,
+				4E1940531BB3C236004423F7 /* SearchResultsViewController.swift in Sources */,
 				4E193FFE1BB15F42004423F7 /* AppDelegate.swift in Sources */,
+				4E1940571BB3EB66004423F7 /* StockSearchResult.swift in Sources */,
 				4E19403F1BB23F71004423F7 /* Colours.swift in Sources */,
+				4E1940591BB3FC1A004423F7 /* SearchBarViewController.swift in Sources */,
+				4E1940551BB3C7E1004423F7 /* SearchNavigationController.swift in Sources */,
 				502BB852FA4D7F0F2FAFF530 /* StockQuoteService.swift in Sources */,
 				502BB382954D3C6A3F956540 /* YahooStockQuoteService.swift in Sources */,
 			);

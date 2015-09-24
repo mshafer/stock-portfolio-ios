@@ -10,7 +10,10 @@ import SwiftyJSON
 class YahooStockQuoteService: StockQuoteService {
     var YAHOO_API_HOST: String = "https://query.yahooapis.com/v1/public/yql"
     var YAHOO_STOCK_FIELDS: [String] = ["Symbol", "Name", "PercentChange", "LastTradePriceOnly", "Currency"]
+    var YAHOO_API_SEARCH_HOST: String = "https://autoc.finance.yahoo.com/autoc"
 
+    // MARK: - getQuotesForHoldings
+    
     func getQuotesForHoldings(holdings: [Holding], onCompletion: (holdings: [Holding]) -> (), onError: () -> ()) {
         if holdings.count == 0 {
             onCompletion(holdings: holdings)
@@ -98,4 +101,60 @@ class YahooStockQuoteService: StockQuoteService {
             }
         }
     }
+    
+    // MARK: - searchForStockSymbols
+    
+    func searchForStockSymbols(filterString: String, onCompletion: (results: [StockSearchResult]) -> (), onError: () -> ()) {
+        let queryParameters = [
+            "query": filterString,
+            "callback": "YAHOO.Finance.SymbolSuggest.ssCallback"
+        ]
+        
+        Alamofire.request(.GET, YAHOO_API_SEARCH_HOST, parameters: queryParameters)
+            .responseString { _, _, result in
+                switch result {
+                case .Success(let responseText):
+                    let json = self.extractJsonFromYahooApiSearchResponse(responseText)
+                    self.handleYahooApiSearchResponse(json!, onCompletion: onCompletion)
+                case .Failure(_):
+                    onError()
+                }
+        }
+    }
+    
+    /**
+        The response from Yahoo contains extraneous text, so we need to strip it off
+    */
+    func extractJsonFromYahooApiSearchResponse(responseText: String) -> JSON? {
+        var stripped = responseText.stringByReplacingOccurrencesOfString("YAHOO.Finance.SymbolSuggest.ssCallback(", withString: "")
+        stripped = stripped.substringToIndex(stripped.endIndex.predecessor()) // Remove last character
+        
+        if let dataFromString = stripped.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
+            let json = JSON(data: dataFromString)
+            return json
+        }
+        
+        return nil
+    }
+    
+    /**
+        Convert the JSON list of responses into StockSearchResult instances and call the completion handler
+    */
+    func handleYahooApiSearchResponse(json: JSON, onCompletion: (holdings: [StockSearchResult]) -> ()) {
+        if let resultList = json["ResultSet"]["Result"].array {
+            var results: [StockSearchResult] = []
+            for result in resultList {
+                let stockSearchResult = StockSearchResult(
+                    symbol: result["symbol"].stringValue,
+                    name: result["name"].stringValue,
+                    exchange: result["exch"].stringValue
+                )
+                results.append(stockSearchResult)
+            }
+            onCompletion(holdings: results)
+            return
+        }
+        onCompletion(holdings: [])
+    }
+
 }

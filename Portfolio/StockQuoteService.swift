@@ -13,4 +13,9 @@ protocol StockQuoteService {
         :param: holdings A list of holdings to update
     */
     func getQuotesForHoldings(holdings: [Holding], onCompletion: (holdings: [Holding]) -> (), onError: () -> ())
+    
+    /**
+        Search for stocks whose symbol or name matches the given filter string.
+    */
+    func searchForStockSymbols(filterString: String, onCompletion: (results: [StockSearchResult]) -> (), onError: () -> ())
 }
