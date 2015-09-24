@@ -30,6 +30,7 @@
 		4E1940551BB3C7E1004423F7 /* SearchNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1940541BB3C7E1004423F7 /* SearchNavigationController.swift */; settings = {ASSET_TAGS = (); }; };
 		4E1940571BB3EB66004423F7 /* StockSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1940561BB3EB66004423F7 /* StockSearchResult.swift */; settings = {ASSET_TAGS = (); }; };
 		4E1940591BB3FC1A004423F7 /* SearchBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1940581BB3FC1A004423F7 /* SearchBarViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		4E19405B1BB40596004423F7 /* StockSearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E19405A1BB40596004423F7 /* StockSearchResultTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		502BB382954D3C6A3F956540 /* YahooStockQuoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502BB413884BBA78DBD7FF6E /* YahooStockQuoteService.swift */; };
 		502BB852FA4D7F0F2FAFF530 /* StockQuoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502BB99E70776BDFC713119A /* StockQuoteService.swift */; };
 /* End PBXBuildFile section */
@@ -94,6 +95,7 @@
 		4E1940541BB3C7E1004423F7 /* SearchNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchNavigationController.swift; sourceTree = "<group>"; };
 		4E1940561BB3EB66004423F7 /* StockSearchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockSearchResult.swift; sourceTree = "<group>"; };
 		4E1940581BB3FC1A004423F7 /* SearchBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBarViewController.swift; sourceTree = "<group>"; };
+		4E19405A1BB40596004423F7 /* StockSearchResultTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockSearchResultTableViewCell.swift; sourceTree = "<group>"; };
 		502BB413884BBA78DBD7FF6E /* YahooStockQuoteService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YahooStockQuoteService.swift; sourceTree = "<group>"; };
 		502BB99E70776BDFC713119A /* StockQuoteService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockQuoteService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -196,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				4E1940371BB16E86004423F7 /* HoldingTableViewCell.swift */,
+				4E19405A1BB40596004423F7 /* StockSearchResultTableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 				4E193FFE1BB15F42004423F7 /* AppDelegate.swift in Sources */,
 				4E1940571BB3EB66004423F7 /* StockSearchResult.swift in Sources */,
 				4E19403F1BB23F71004423F7 /* Colours.swift in Sources */,
+				4E19405B1BB40596004423F7 /* StockSearchResultTableViewCell.swift in Sources */,
 				4E1940591BB3FC1A004423F7 /* SearchBarViewController.swift in Sources */,
 				4E1940551BB3C7E1004423F7 /* SearchNavigationController.swift in Sources */,
 				502BB852FA4D7F0F2FAFF530 /* StockQuoteService.swift in Sources */,

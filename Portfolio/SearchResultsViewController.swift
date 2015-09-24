@@ -98,10 +98,9 @@ class SearchResultsViewController: UITableViewController, UISearchBarDelegate, U
             return tableView.dequeueReusableCellWithIdentifier("LoadingCell")!
         }
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("StockSearchResultCell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("StockSearchResultCell", forIndexPath: indexPath) as! StockSearchResultTableViewCell
         
-        print(indexPath.row)
-        cell.textLabel!.text = searchResults[indexPath.row].symbol
+        cell.configureForSearchResult(searchResults[indexPath.row])
         
         return cell
     }

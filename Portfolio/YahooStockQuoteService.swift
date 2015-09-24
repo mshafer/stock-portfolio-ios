@@ -147,7 +147,7 @@ class YahooStockQuoteService: StockQuoteService {
                 let stockSearchResult = StockSearchResult(
                     symbol: result["symbol"].stringValue,
                     name: result["name"].stringValue,
-                    exchange: result["exch"].stringValue
+                    exchange: result["exchDisp"].stringValue
                 )
                 results.append(stockSearchResult)
             }

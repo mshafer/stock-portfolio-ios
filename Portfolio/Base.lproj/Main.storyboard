@@ -243,22 +243,46 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StockSearchResultCell" textLabel="czY-Bj-Twa" style="IBUITableViewCellStyleDefault" id="Nff-MH-yxv">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="StockSearchResultCell" id="ahr-zy-4LJ" customClass="StockSearchResultTableViewCell" customModule="Portfolio" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Nff-MH-yxv" id="p19-nT-Jml">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ahr-zy-4LJ" id="eaf-LD-AbG">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="czY-Bj-Twa">
-                                            <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MRP.NZ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qEC-9v-RMa">
+                                            <rect key="frame" x="16" y="6" width="56.5" height="18"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" text="Mighty River Power Ltd." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4U6-Iu-McE">
+                                            <rect key="frame" x="16" y="25" width="124.5" height="13.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Zealand" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fmK-ae-3Ir">
+                                            <rect key="frame" x="81" y="6" width="91.5" height="18"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="4U6-Iu-McE" firstAttribute="leading" secondItem="qEC-9v-RMa" secondAttribute="leading" id="o7Z-iX-R8j"/>
+                                        <constraint firstItem="fmK-ae-3Ir" firstAttribute="leading" secondItem="qEC-9v-RMa" secondAttribute="trailing" constant="8.5" id="oEk-tK-LRW"/>
+                                        <constraint firstItem="4U6-Iu-McE" firstAttribute="top" secondItem="qEC-9v-RMa" secondAttribute="bottom" constant="1" id="osS-iw-2QP"/>
+                                        <constraint firstItem="qEC-9v-RMa" firstAttribute="leading" secondItem="eaf-LD-AbG" secondAttribute="leadingMargin" constant="8" id="oxU-av-coC"/>
+                                        <constraint firstItem="qEC-9v-RMa" firstAttribute="top" secondItem="eaf-LD-AbG" secondAttribute="topMargin" constant="-2" id="rtx-QI-L0C"/>
+                                        <constraint firstItem="fmK-ae-3Ir" firstAttribute="top" secondItem="qEC-9v-RMa" secondAttribute="top" id="skH-3j-XIq"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="exchange" destination="fmK-ae-3Ir" id="Rpc-xh-uYF"/>
+                                    <outlet property="name" destination="4U6-Iu-McE" id="EX5-IS-0Vw"/>
+                                    <outlet property="symbol" destination="qEC-9v-RMa" id="g9X-v5-Y0p"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LoadingCell" textLabel="ivS-da-6aB" style="IBUITableViewCellStyleDefault" id="R1N-Sg-W6z">
                                 <rect key="frame" x="0.0" y="72" width="600" height="44"/>
