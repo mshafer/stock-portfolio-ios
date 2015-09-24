@@ -32,8 +32,7 @@ class YahooStockQuoteService: StockQuoteService {
                 switch result {
                 case .Success(let json):
                     self.handleYahooApiResponse(holdings, json: JSON(json), onCompletion: onCompletion, onError: onError)
-                case .Failure(let error):
-                    print("Request failed with error: \(error)")
+                case .Failure(_):
                     onError()
                 }
             }
