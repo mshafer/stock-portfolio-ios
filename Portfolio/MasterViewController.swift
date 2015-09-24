@@ -12,6 +12,7 @@ class MasterViewController: UITableViewController {
 
     var detailViewController: DetailViewController? = nil
     var holdings: [Holding] = []
+    var encounteredErrorLoadingData = false
     var stockQuoteService: StockQuoteService = YahooStockQuoteService()
     var userHoldingsService: UserHoldingsService = UserHoldingsService()
 
@@ -67,11 +68,23 @@ class MasterViewController: UITableViewController {
         print("I'm gonna refresh now!")
         self.holdings = userHoldingsService.loadUserHoldings()
         stockQuoteService.getQuotesForHoldings(self.holdings,
-            onCompletion: { _ in
-                self.tableView.reloadData()
-                self.refreshControl?.endRefreshing()
-            },
-            onError: { _ in print("Ooops") } )
+            onCompletion: self.onRefreshSuccess,
+            onError: self.onRefreshError)
+    }
+    
+    func onRefreshSuccess(_: [Holding]) {
+        // The StockQuoteService directly modifies the holdings in the array so we don't actually need to use
+        // the holdings argument given to us
+        self.encounteredErrorLoadingData = false
+        self.tableView.reloadData()
+        self.refreshControl?.endRefreshing()
+        self.userHoldingsService.saveUserHoldings(self.holdings)
+    }
+    
+    func onRefreshError() {
+        self.encounteredErrorLoadingData = true
+        self.tableView.reloadData()
+        self.refreshControl?.endRefreshing()
     }
 
     // MARK: - Segues
@@ -95,19 +108,21 @@ class MasterViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return holdings.count
+        if encounteredErrorLoadingData {
+            return 1
+        } else {
+            return holdings.count
+        }
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        if (encounteredErrorLoadingData) {
+            return tableView.dequeueReusableCellWithIdentifier("ErrorCell")!
+        }
+        
         let cell = tableView.dequeueReusableCellWithIdentifier("HoldingCell", forIndexPath: indexPath) as! HoldingTableViewCell
-
         let holding = holdings[indexPath.row]
-        holding.closingPrice = 2.50
-        holding.currentPrice = 2.48
-        
-        setHoldingValues(holding, inTableViewCell: cell)
-        setColours(holding, inTableViewCell: cell)
-        
+        cell.configureForHolding(holding)
         return cell
     }
 
@@ -157,41 +172,7 @@ class MasterViewController: UITableViewController {
     
     // MARK: Table cell render functions
     
-    func setHoldingValues(holding: Holding, inTableViewCell cell: HoldingTableViewCell) {
-        cell.symbol.text = holding.symbol
-        cell.name.text = holding.name
-        cell.currentValue.text = Util.currencyToString(holding.currentValue, currencyCode: holding.currencyCode)
-        cell.quantityAndPrice.text = holdingQuantityAndPrice(holding)
-        cell.quantityAndPrice.sizeToFit()
-        cell.changeTodayInDollars.text = Util.currencyToString(holding.changeTodayAsDollars, currencyCode: holding.currencyCode)
-        cell.changeTodayAsPercentage.text = doubleToPercentage(holding.changeTodayAsFraction)
-    }
     
-    func setColours(holding: Holding, inTableViewCell cell: HoldingTableViewCell) {
-        let colour: UIColor
-        if (holding.changeTodayAsDollars >= 0) {
-            colour = UIColor(hex: "#45BF55")
-        } else {
-            colour = UIColor.dangerColor()
-        }
-        
-        cell.changeTodayInDollars.textColor = colour
-        cell.changeTodayAsPercentage.textColor = colour
-    }
-    
-    // MARK: - Computed strings for display in the UI
-    
-    func holdingQuantityAndPrice(holding: Holding) -> String {
-        return [
-            String(holding.numberOfShares),
-            "@",
-            Util.currencyToString(holding.currentPrice!, currencyCode: holding.currencyCode)
-        ].joinWithSeparator("")
-    }
-    
-    func doubleToPercentage(value: Double) -> String {
-        return String(format: "%.1f%%", value * 100)
-    }
 
 }
 

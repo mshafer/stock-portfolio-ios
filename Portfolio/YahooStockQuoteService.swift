@@ -9,7 +9,7 @@ import SwiftyJSON
 
 class YahooStockQuoteService: StockQuoteService {
     var YAHOO_API_HOST: String = "https://query.yahooapis.com/v1/public/yql"
-    var YAHOO_STOCK_FIELDS: [String] = ["Symbol", "Name", "PreviousClose", "LastTradePriceOnly", "Currency"]
+    var YAHOO_STOCK_FIELDS: [String] = ["Symbol", "Name", "PercentChange", "LastTradePriceOnly", "Currency"]
 
     func getQuotesForHoldings(holdings: [Holding], onCompletion: (holdings: [Holding]) -> (), onError: () -> ()) {
         if holdings.count == 0 {
@@ -31,7 +31,7 @@ class YahooStockQuoteService: StockQuoteService {
             .responseJSON { _, _, result in
                 switch result {
                 case .Success(let json):
-                    self.handleYahooApiResponse(JSON(json), onCompletion: onCompletion, onError: onError)
+                    self.handleYahooApiResponse(holdings, json: JSON(json), onCompletion: onCompletion, onError: onError)
                 case .Failure(let error):
                     print("Request failed with error: \(error)")
                     onError()
@@ -51,8 +51,15 @@ class YahooStockQuoteService: StockQuoteService {
         ].joinWithSeparator(" ")
     }
     
-    func handleYahooApiResponse(json: JSON, onCompletion: (holdings: [Holding]) -> (), onError: () -> ()) {
-        print(json)
+    /**
+        Handle the response from the Yahoo API call
+    
+        :param: holdings The array containing the user's holdings. Each will be updated with the new info received from the API
+        :param: json The raw JSON object received from the API call
+        :param: onCompletion The handler for successful completion
+        :param: onError The handler for an error
+    */
+    func handleYahooApiResponse(holdings: [Holding], json: JSON, onCompletion: (holdings: [Holding]) -> (), onError: () -> ()) {
         if let _ = json["error"].dictionary {
             onError()
             return
@@ -69,8 +76,27 @@ class YahooStockQuoteService: StockQuoteService {
             quotes = [valueForQuoteKey]
         }
         
-        print(quotes)
+        self.updateHoldings(holdings, usingQuotes: quotes)
         
-        onCompletion(holdings: [])
+        onCompletion(holdings: holdings)
+    }
+    
+    /**
+        Update the properties of each Holding with the new info from 'quotes'
+    */
+    func updateHoldings(holdings: [Holding], usingQuotes quotes: [JSON]) {
+        var quotesBySymbol: Dictionary<String, JSON> = [:]
+        for quote in quotes {
+            quotesBySymbol[quote["Symbol"].stringValue] = quote
+        }
+        
+        for holding in holdings {
+            if let quote = quotesBySymbol[holding.symbol] {
+                holding.name = quote["Name"].stringValue
+                holding.changeTodayAsFraction = Util.percentageToFraction(quote["PercentChange"].stringValue)
+                holding.currentPrice = quote["LastTradePriceOnly"].doubleValue
+                holding.currencyCode = quote["Currency"].stringValue
+            }
+        }
     }
 }

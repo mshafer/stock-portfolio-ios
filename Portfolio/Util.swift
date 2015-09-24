@@ -28,6 +28,15 @@ class Util {
         return formatter.stringFromNumber(NSNumber(double: value))!
     }
     
+    class func fractionToPercentage(value: Double) -> String {
+        return String(format: "%.2f%%", value * 100)
+    }
+    
+    class func percentageToFraction(percentageString: String) -> Double {
+        let numberString = percentageString.stringByReplacingOccurrencesOfString("%", withString: "")
+        return (numberString as NSString).doubleValue / 100
+    }
+    
     class func documentsDirectory() -> NSString {
         return NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
     }

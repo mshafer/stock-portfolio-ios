@@ -17,28 +17,34 @@ class Holding: NSObject, NSCoding {
     var currencyCode: String
     
     // Optional values
-    var closingPrice: Double?
+    var changeTodayAsFraction: Double?
     var currentPrice: Double?
     
     // Computed properties
-    var closingValue: Double {
+    var closingValue: Double? {
         get {
-            return Double(self.numberOfShares) * self.closingPrice!
+            guard let currentValue = self.currentValue,
+                let changeTodayAsFraction = self.changeTodayAsFraction else {
+                return nil
+            }
+            return currentValue / (1 + changeTodayAsFraction)
         }
     }
-    var currentValue: Double {
+    var currentValue: Double? {
         get {
-            return Double(self.numberOfShares) * self.currentPrice!
+            guard let currentPrice = self.currentPrice else {
+                return nil
+            }
+            return Double(self.numberOfShares) * currentPrice
         }
     }
-    var changeTodayAsFraction: Double {
+    var changeTodayAsDollars: Double? {
         get {
-            return (self.currentPrice! - self.closingPrice!) / self.closingPrice!
-        }
-    }
-    var changeTodayAsDollars: Double {
-        get {
-            return self.changeTodayAsFraction * self.closingValue
+            guard let changeTodayAsFraction = self.changeTodayAsFraction,
+                let closingValue = self.closingValue else {
+                    return nil
+            }
+            return changeTodayAsFraction * closingValue
         }
     }
     
@@ -53,7 +59,6 @@ class Holding: NSObject, NSCoding {
     // MARK: NSCoding
     
     required convenience init?(coder decoder: NSCoder) {
-        print("Calling init with coder")
         guard let symbol = decoder.decodeObjectForKey("symbol") as? String,
             let name = decoder.decodeObjectForKey("name") as? String,
             let currencyCode = decoder.decodeObjectForKey("currencyCode") as? String
