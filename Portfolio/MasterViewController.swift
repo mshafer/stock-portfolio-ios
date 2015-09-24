@@ -39,8 +39,8 @@ class MasterViewController: UITableViewController {
         
         // For debugging
 //        let holdings = [
-//            Holding(symbol: "MRP.NZ", name: "Mighty River Power Ltd.", numberOfShares: 832, totalPurchasePrice: 2080, currencyCode: "NZD"),
-//            Holding(symbol: "GNE.NZ", name: "Genesis Energy Ltd.", numberOfShares: 1376, totalPurchasePrice: 2064, currencyCode: "JPY")
+//            Holding(symbol: "AAPL", name: "Apple Inc", numberOfShares: 475, totalPurchasePrice: 1589, currencyCode: "USD"),
+//            Holding(symbol: "GOOG", name: "Google", numberOfShares: 1376, totalPurchasePrice: 4827, currencyCode: "JPY")
 //        ]
 //        userHoldingsService.saveUserHoldings(self.holdings)
 //        self.holdings = userHoldingsService.loadUserHoldings()
