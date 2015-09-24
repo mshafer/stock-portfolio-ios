@@ -105,6 +105,26 @@ class SearchResultsViewController: UITableViewController, UISearchBarDelegate, U
         return cell
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        print("Did select row \(indexPath.row)")
+        let searchResult = searchResults[indexPath.row]
+        let controller = storyboard?.instantiateViewControllerWithIdentifier("NewHoldingViewController") as! NewHoldingViewController
+        controller.stockSearchResult = searchResult
+        controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
+        controller.navigationItem.leftItemsSupplementBackButton = true
+        navigationController!.pushViewController(controller, animated: true)
+    }
+    
+    // MARK: - Segues
+    
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        if segue.identifier == "ShowNewHoldingSegue" {
+//            if let indexPath = self.tableView.indexPathForSelectedRow {
+//                
+//            }
+//        }
+//    }
+    
     // MARK: - UISearchResultsUpdating
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {

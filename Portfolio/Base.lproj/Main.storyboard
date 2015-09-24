@@ -204,18 +204,60 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StockSearchResultCell" textLabel="I1d-zD-XN6" style="IBUITableViewCellStyleDefault" id="jpL-Sy-fH2">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="StockSearchResultCell" id="gy2-HI-Z09" customClass="StockSearchResultTableViewCell" customModule="Portfolio" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jpL-Sy-fH2" id="fEf-RU-gOi">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gy2-HI-Z09" id="t32-8n-wXH">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="I1d-zD-XN6">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MRP.NZ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="blE-cz-wUE">
+                                            <rect key="frame" x="16" y="6" width="56.5" height="18"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" text="Mighty River Power Ltd." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MBt-Gt-PxS">
+                                            <rect key="frame" x="16" y="25" width="124.5" height="13.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Zealand" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bSA-8D-XMv">
+                                            <rect key="frame" x="81" y="6" width="91.5" height="18"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="bSA-8D-XMv" firstAttribute="top" secondItem="blE-cz-wUE" secondAttribute="top" id="Yir-W4-j6T"/>
+                                        <constraint firstItem="blE-cz-wUE" firstAttribute="top" secondItem="t32-8n-wXH" secondAttribute="topMargin" constant="-2" id="hnh-Fe-XY5"/>
+                                        <constraint firstItem="MBt-Gt-PxS" firstAttribute="top" secondItem="blE-cz-wUE" secondAttribute="bottom" constant="1" id="i8N-8q-AgG"/>
+                                        <constraint firstItem="blE-cz-wUE" firstAttribute="leading" secondItem="t32-8n-wXH" secondAttribute="leadingMargin" constant="8" id="rRj-Cp-lqI"/>
+                                        <constraint firstItem="MBt-Gt-PxS" firstAttribute="leading" secondItem="blE-cz-wUE" secondAttribute="leading" id="ugz-18-oGS"/>
+                                        <constraint firstItem="bSA-8D-XMv" firstAttribute="leading" secondItem="blE-cz-wUE" secondAttribute="trailing" constant="8.5" id="wdh-B1-k3q"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="exchange" destination="bSA-8D-XMv" id="KQk-fb-nVh"/>
+                                    <outlet property="name" destination="MBt-Gt-PxS" id="Uwk-nW-pf7"/>
+                                    <outlet property="symbol" destination="blE-cz-wUE" id="Bxi-gK-Hxm"/>
+                                    <segue destination="7Gh-Re-aE1" kind="show" identifier="ShowNewHoldingSegue" id="bfT-1b-fBW"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LoadingCell" textLabel="xea-tT-Mez" style="IBUITableViewCellStyleDefault" id="ymT-D8-1y0">
+                                <rect key="frame" x="0.0" y="136" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ymT-D8-1y0" id="qOq-Li-Aem">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Searching..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xea-tT-Mez">
                                             <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -311,6 +353,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CD8-eR-hQv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2109" y="70"/>
+        </scene>
+        <!--New Holding-->
+        <scene sceneID="1Bn-FP-LtM">
+            <objects>
+                <viewController storyboardIdentifier="NewHoldingViewController" title="New Holding" id="7Gh-Re-aE1" customClass="NewHoldingViewController" customModule="Portfolio" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hlQ-BZ-sw6"/>
+                        <viewControllerLayoutGuide type="bottom" id="CiC-vH-tdB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zeb-ZH-6Jz">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="p7m-y0-uXQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2798" y="-614"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="r7l-gg-dq7">
