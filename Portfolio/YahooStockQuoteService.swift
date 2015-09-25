@@ -62,25 +62,31 @@ class YahooStockQuoteService: StockQuoteService {
         :param: onError The handler for an error
     */
     func handleYahooApiResponse(holdings: [Holding], json: JSON, onCompletion: (holdings: [Holding]) -> (), onError: () -> ()) {
-        if let _ = json["error"].dictionary {
-            onError()
+        if let quotes = extractQuotesFromYahooResponse(json) {
+            self.updateHoldings(holdings, usingQuotes: quotes)
+            onCompletion(holdings: holdings)
             return
         }
+        onError()
+    }
+    
+    /**
+        Traverse Yahoo's JSON response to extract a list of JSON quotes
+    */
+    func extractQuotesFromYahooResponse(json: JSON) -> [JSON]? {
+        if let _ = json["error"].dictionary {
+            return nil
+        }
         
-        let quotes: [JSON]
         // Yahoo doesn't return a single-element list for one symbol - it just returns the object
         // Need to work out which case we're dealing with
         let valueForQuoteKey = json["query"]["results"]["quote"]
         if let listOfQuotes = valueForQuoteKey.array {
-            quotes = listOfQuotes
+            return listOfQuotes
         } else {
             // Wrap the single element in an array
-            quotes = [valueForQuoteKey]
+            return [valueForQuoteKey]
         }
-        
-        self.updateHoldings(holdings, usingQuotes: quotes)
-        
-        onCompletion(holdings: holdings)
     }
     
     /**
@@ -99,6 +105,36 @@ class YahooStockQuoteService: StockQuoteService {
                 holding.currentPrice = quote["LastTradePriceOnly"].doubleValue
                 holding.currencyCode = quote["Currency"].stringValue
             }
+        }
+    }
+    
+    // MARK: - getQuoteForStockSymbol
+    
+    func getQuoteForStockSymbol(symbol: String, onCompletion: (stock: Stock) -> (), onError: () -> ()) {
+        let query = yqlQueryForSymbols([symbol])
+        let queryParameters = [
+            "q": query,
+            "format": "json",
+            "env": "http://datatables.org/alltables.env"
+        ]
+        
+        Alamofire.request(.GET, YAHOO_API_HOST, parameters: queryParameters)
+            .responseJSON { _, _, result in
+                switch result {
+                case .Success(let json):
+                    if let quotes = self.extractQuotesFromYahooResponse(JSON(json)) {
+                        let quote = quotes[0]
+                        let stock = Stock(
+                            symbol: quote["Symbol"].stringValue,
+                            name: quote["Name"].stringValue,
+                            currencyCode: quote["Currency"].stringValue)
+                        onCompletion(stock: stock)
+                    } else {
+                        onError()
+                    }
+                case .Failure(_):
+                    onError()
+                }
         }
     }
     

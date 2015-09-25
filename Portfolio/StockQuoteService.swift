@@ -15,6 +15,11 @@ protocol StockQuoteService {
     func getQuotesForHoldings(holdings: [Holding], onCompletion: (holdings: [Holding]) -> (), onError: () -> ())
     
     /**
+        Search for the given symbol and create a Holding for it
+    */
+    func getQuoteForStockSymbol(symbol: String, onCompletion: (stock: Stock) -> (), onError: () -> ())
+    
+    /**
         Search for stocks whose symbol or name matches the given filter string.
     */
     func searchForStockSymbols(filterString: String, onCompletion: (results: [StockSearchResult]) -> (), onError: () -> ())
