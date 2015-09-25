@@ -28,8 +28,7 @@ class SearchBarViewController: UITableViewController, UISearchControllerDelegate
             if filterString == nil || filterString!.isEmpty {
                 searchResults = []
                 self.tableView.reloadData()
-            }
-            else {
+            } else if (filterString != oldValue) {
                 self.stageRefreshOperation()
             }
         }
