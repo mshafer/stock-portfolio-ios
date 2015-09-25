@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MasterViewController: UITableViewController {
+class MasterViewController: UITableViewController, EditHoldingDelegate {
 
     var detailViewController: DetailViewController? = nil
     var holdings: [Holding] = []
@@ -34,16 +34,10 @@ class MasterViewController: UITableViewController {
         self.refreshControl = UIRefreshControl()
         self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         self.tableView.setContentOffset(CGPointMake(0, -self.refreshControl!.frame.size.height), animated: true)
+        
+        self.holdings = userHoldingsService.loadUserHoldings()
         self.refreshControl?.beginRefreshing()
         self.refresh(self)
-        
-        // For debugging
-//        let holdings = [
-//            Holding(symbol: "AAPL", name: "Apple Inc", numberOfShares: 475, totalPurchasePrice: 1589, currencyCode: "USD"),
-//            Holding(symbol: "GOOG", name: "Google", numberOfShares: 1376, totalPurchasePrice: 4827, currencyCode: "JPY")
-//        ]
-//        userHoldingsService.saveUserHoldings(self.holdings)
-//        self.holdings = userHoldingsService.loadUserHoldings()
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -57,7 +51,9 @@ class MasterViewController: UITableViewController {
     }
     
     func showSearchScreen(sender: AnyObject) {
-        let searchNavigationController = self.storyboard?.instantiateViewControllerWithIdentifier("SearchNavigationController")
+        let searchNavigationController = self.storyboard?.instantiateViewControllerWithIdentifier("SearchNavigationController") as! SearchNavigationController!
+        let searchViewController = searchNavigationController.viewControllers.first as! SearchBarViewController
+        searchViewController.editHoldingDelegate = self
         self.presentViewController(searchNavigationController!, animated: true, completion: nil)
     }
 
@@ -70,7 +66,6 @@ class MasterViewController: UITableViewController {
     // MARK: - Refresh model
     
     func refresh(sender:AnyObject) {
-        self.holdings = userHoldingsService.loadUserHoldings()
         stockQuoteService.getQuotesForHoldings(self.holdings,
             onCompletion: self.onRefreshSuccess,
             onError: self.onRefreshError)
@@ -162,5 +157,24 @@ class MasterViewController: UITableViewController {
         holdings.insert(holding, atIndex: toIndexPath.row)
         self.userHoldingsService.saveUserHoldings(self.holdings)
     }
+    
+    // MARK: - Edit Holding Delegate
+    
+    func newHoldingWasCreated(holding: Holding) {
+        holdings.insert(holding, atIndex: 0)
+        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
+        self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        userHoldingsService.saveUserHoldings(self.holdings)
+        self.refresh(self)
+    }
+
+    func holdingWasEdited(oldHolding: Holding, editedHolding: Holding) {
+        let indexOfHolding = holdings.indexOf(oldHolding)
+        holdings[indexOfHolding!] = editedHolding
+        self.tableView.reloadData()
+        userHoldingsService.saveUserHoldings(self.holdings)
+        self.refresh(self)
+    }
+    
 }
 

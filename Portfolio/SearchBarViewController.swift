@@ -13,8 +13,8 @@ class SearchBarViewController: UITableViewController, UISearchControllerDelegate
     // MARK: - Properties
     
     var debounceTimer: NSTimer?
-    
     var yahooStockQuoteService = YahooStockQuoteService()
+    var editHoldingDelegate: EditHoldingDelegate?
     
     // `searchController` is set in viewDidLoad(_:).
     var searchController: UISearchController!
@@ -146,6 +146,7 @@ class SearchBarViewController: UITableViewController, UISearchControllerDelegate
                 let searchResult = searchResults[indexPath.row]
                 let controller = segue.destinationViewController as! NewHoldingViewController
                 controller.stockSearchResult = searchResult
+                controller.editHoldingDelegate = self.editHoldingDelegate
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }

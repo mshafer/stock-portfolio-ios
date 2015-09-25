@@ -12,11 +12,10 @@ class Stock {
     // Required values
     var symbol: String
     var name: String
-    var currencyCode: String
+    var currencyCode: String?
     
-    init(symbol: String, name: String, currencyCode: String) {
+    init(symbol: String, name: String) {
         self.symbol = symbol
         self.name = name
-        self.currencyCode = currencyCode
     }
 }

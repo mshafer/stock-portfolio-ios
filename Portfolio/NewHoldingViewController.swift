@@ -25,6 +25,8 @@ class NewHoldingViewController: UITableViewController, UITextFieldDelegate {
     var stockQuoteService = YahooStockQuoteService()
     
     var doneButton : UIBarButtonItem!
+    
+    var editHoldingDelegate: EditHoldingDelegate?
 
     /**
         If this property gets set, it means we're entering the view to create a new Holding based on a
@@ -35,9 +37,11 @@ class NewHoldingViewController: UITableViewController, UITextFieldDelegate {
     var stockSearchResult: StockSearchResult? {
         didSet {
             self.inEditMode = false
+            self.stock = Stock(symbol: self.stockSearchResult!.symbol, name: self.stockSearchResult!.name)
             stockQuoteService.getQuoteForStockSymbol((self.stockSearchResult!.symbol),
                 onCompletion: { stock in
-                    self.stock = stock
+                    self.stock?.currencyCode = stock.currencyCode
+                    self.configureView()
                 },
                 onError: { _ in
                     // TODO: Handle error case
@@ -45,16 +49,15 @@ class NewHoldingViewController: UITableViewController, UITextFieldDelegate {
         }
     }
     
-    var stock: Stock? {
-        didSet {
-            self.configureView()
-        }
-    }
+    // This is the variable that the view derives its info from
+    var stock: Stock?
     
     var holding: Holding? {
         didSet {
             self.inEditMode = true
-            self.stock = Stock(symbol: holding!.symbol, name: self.holding!.name, currencyCode: self.holding!.currencyCode)
+            let stock = Stock(symbol: holding!.symbol, name: self.holding!.name)
+            stock.currencyCode = self.holding?.currencyCode
+            self.stock = stock
         }
     }
     
@@ -64,10 +67,7 @@ class NewHoldingViewController: UITableViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let symbol = self.stockSearchResult?.symbol {
-            self.symbolLabel.text = symbol
-            self.nameLabel.text = ""
-        }
+        configureView()
         
         self.addDoneButton()
         self.validateInputs()
@@ -90,7 +90,14 @@ class NewHoldingViewController: UITableViewController, UITextFieldDelegate {
     
     func doneEditing() {
         // Pop this view controller and return to list view
-        print("Save the holding")
+        if inEditMode {
+            self.editHoldingDelegate?.holdingWasEdited(self.holding!, editedHolding: createHoldingFromInputs()!)
+        } else {
+            self.editHoldingDelegate?.newHoldingWasCreated(createHoldingFromInputs()!)
+            presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+        }
+        
+        // TODO: Pop this view
     }
     
     // MARK: - Rendering
@@ -114,7 +121,9 @@ class NewHoldingViewController: UITableViewController, UITextFieldDelegate {
         }
         
         self.totalAmountPaidInput.fadeTransition(0.4)
-        self.totalAmountPaidInput.placeholder = self.stock?.currencyCode
+        if let currency = self.stock?.currencyCode {
+            self.totalAmountPaidInput.placeholder = currency
+        }
         if let price = self.holding?.totalPurchasePrice {
             self.totalAmountPaidInput.text = String(price)
         }
@@ -144,7 +153,7 @@ class NewHoldingViewController: UITableViewController, UITextFieldDelegate {
             name: stock.name,
             numberOfShares: numberOfShares,
             totalPurchasePrice: totalAmountPaid,
-            currencyCode: stock.currencyCode
+            currencyCode: stock.currencyCode!
         )
     }
 

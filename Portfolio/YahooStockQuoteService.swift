@@ -100,7 +100,6 @@ class YahooStockQuoteService: StockQuoteService {
         
         for holding in holdings {
             if let quote = quotesBySymbol[holding.symbol] {
-                holding.name = quote["Name"].stringValue
                 holding.changeTodayAsFraction = Util.percentageToFraction(quote["PercentChange"].stringValue)
                 holding.currentPrice = quote["LastTradePriceOnly"].doubleValue
                 holding.currencyCode = quote["Currency"].stringValue
@@ -126,8 +125,9 @@ class YahooStockQuoteService: StockQuoteService {
                         let quote = quotes[0]
                         let stock = Stock(
                             symbol: quote["Symbol"].stringValue,
-                            name: quote["Name"].stringValue,
-                            currencyCode: quote["Currency"].stringValue)
+                            name: quote["Name"].stringValue
+                        )
+                        stock.currencyCode = quote["Currency"].stringValue
                         onCompletion(stock: stock)
                     } else {
                         onError()
