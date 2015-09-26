@@ -55,7 +55,7 @@ class NewHoldingViewController: UITableViewController, UITextFieldDelegate {
     var holding: Holding? {
         didSet {
             self.inEditMode = true
-            let stock = Stock(symbol: holding!.symbol, name: self.holding!.name)
+            var stock = Stock(symbol: holding!.symbol, name: self.holding!.name)
             stock.currencyCode = self.holding?.currencyCode
             self.stock = stock
         }

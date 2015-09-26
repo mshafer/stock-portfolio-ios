@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Stock {
+struct Stock {
     // Required values
     var symbol: String
     var name: String

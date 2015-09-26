@@ -17,6 +17,7 @@ class HoldingTableViewCell: UITableViewCell {
     @IBOutlet var changeTodayInDollars: UILabel!
     @IBOutlet var changeTodayAsPercentage: UILabel!
     @IBOutlet var constraintNameAndQuantityPriceHorizontalSpace: NSLayoutConstraint!
+    @IBOutlet var constraintSymbolAndCurrentValueHorizontalSpace: NSLayoutConstraint!
     
     override func setEditing(editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
@@ -31,8 +32,10 @@ class HoldingTableViewCell: UITableViewCell {
         
         if isVisible {
             self.addConstraint(self.constraintNameAndQuantityPriceHorizontalSpace)
+            self.addConstraint(self.constraintSymbolAndCurrentValueHorizontalSpace)
         } else {
             self.removeConstraint(self.constraintNameAndQuantityPriceHorizontalSpace)
+            self.removeConstraint(self.constraintSymbolAndCurrentValueHorizontalSpace)
         }
     }
     

@@ -41,7 +41,7 @@ class YahooStockQuoteService: StockQuoteService {
             }
     }
 
-    func yqlQueryForSymbols(symbols: [String]) -> String {
+    private func yqlQueryForSymbols(symbols: [String]) -> String {
         // Yahoo needs quotes around each symbol
         let quotedSymbols = symbols.map { ["\"", $0, "\""].joinWithSeparator("") }
         return [
@@ -61,7 +61,7 @@ class YahooStockQuoteService: StockQuoteService {
         :param: onCompletion The handler for successful completion
         :param: onError The handler for an error
     */
-    func handleYahooApiResponse(holdings: [Holding], json: JSON, onCompletion: (holdings: [Holding]) -> (), onError: () -> ()) {
+    private func handleYahooApiResponse(holdings: [Holding], json: JSON, onCompletion: (holdings: [Holding]) -> (), onError: () -> ()) {
         if let quotes = extractQuotesFromYahooResponse(json) {
             self.updateHoldings(holdings, usingQuotes: quotes)
             onCompletion(holdings: holdings)
@@ -73,7 +73,7 @@ class YahooStockQuoteService: StockQuoteService {
     /**
         Traverse Yahoo's JSON response to extract a list of JSON quotes
     */
-    func extractQuotesFromYahooResponse(json: JSON) -> [JSON]? {
+    private func extractQuotesFromYahooResponse(json: JSON) -> [JSON]? {
         if let _ = json["error"].dictionary {
             return nil
         }
@@ -92,7 +92,7 @@ class YahooStockQuoteService: StockQuoteService {
     /**
         Update the properties of each Holding with the new info from 'quotes'
     */
-    func updateHoldings(holdings: [Holding], usingQuotes quotes: [JSON]) {
+    private func updateHoldings(holdings: [Holding], usingQuotes quotes: [JSON]) {
         var quotesBySymbol: Dictionary<String, JSON> = [:]
         for quote in quotes {
             quotesBySymbol[quote["Symbol"].stringValue] = quote
@@ -123,7 +123,7 @@ class YahooStockQuoteService: StockQuoteService {
                 case .Success(let json):
                     if let quotes = self.extractQuotesFromYahooResponse(JSON(json)) {
                         let quote = quotes[0]
-                        let stock = Stock(
+                        var stock = Stock(
                             symbol: quote["Symbol"].stringValue,
                             name: quote["Name"].stringValue
                         )
@@ -161,7 +161,7 @@ class YahooStockQuoteService: StockQuoteService {
     /**
         The response from Yahoo contains extraneous text, so we need to strip it off
     */
-    func extractJsonFromYahooApiSearchResponse(responseText: String) -> JSON? {
+    private func extractJsonFromYahooApiSearchResponse(responseText: String) -> JSON? {
         var stripped = responseText.stringByReplacingOccurrencesOfString("YAHOO.Finance.SymbolSuggest.ssCallback(", withString: "")
         stripped = stripped.substringToIndex(stripped.endIndex.predecessor()) // Remove last character
         
@@ -176,7 +176,7 @@ class YahooStockQuoteService: StockQuoteService {
     /**
         Convert the JSON list of responses into StockSearchResult instances and call the completion handler
     */
-    func handleYahooApiSearchResponse(json: JSON, onCompletion: (holdings: [StockSearchResult]) -> ()) {
+    private func handleYahooApiSearchResponse(json: JSON, onCompletion: (holdings: [StockSearchResult]) -> ()) {
         if let resultList = json["ResultSet"]["Result"].array {
             var results: [StockSearchResult] = []
             for result in resultList {

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StockSearchResult {
+struct StockSearchResult {
     var symbol: String
     var name: String
     var exchange: String

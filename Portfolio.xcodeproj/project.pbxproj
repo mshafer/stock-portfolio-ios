@@ -35,6 +35,10 @@
 		4E7905E91BB4F864001AE3FE /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7905E81BB4F864001AE3FE /* Stock.swift */; settings = {ASSET_TAGS = (); }; };
 		4E9AD2371BB5216900A5CB8D /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9AD2361BB5216900A5CB8D /* UIView.swift */; settings = {ASSET_TAGS = (); }; };
 		4E9AD2391BB5250900A5CB8D /* EditHoldingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9AD2381BB5250900A5CB8D /* EditHoldingDelegate.swift */; settings = {ASSET_TAGS = (); }; };
+		4E9AD23B1BB60DB800A5CB8D /* ExchangeRateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9AD23A1BB60DB800A5CB8D /* ExchangeRateService.swift */; settings = {ASSET_TAGS = (); }; };
+		4E9AD23D1BB61D7000A5CB8D /* ExchangeRateListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9AD23C1BB61D7000A5CB8D /* ExchangeRateListener.swift */; settings = {ASSET_TAGS = (); }; };
+		4E9AD23F1BB61F5C00A5CB8D /* FixerExchangeRateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9AD23E1BB61F5C00A5CB8D /* FixerExchangeRateService.swift */; settings = {ASSET_TAGS = (); }; };
+		4E9AD2411BB629D000A5CB8D /* NSDateComparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9AD2401BB629D000A5CB8D /* NSDateComparison.swift */; settings = {ASSET_TAGS = (); }; };
 		502BB382954D3C6A3F956540 /* YahooStockQuoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502BB413884BBA78DBD7FF6E /* YahooStockQuoteService.swift */; };
 		502BB852FA4D7F0F2FAFF530 /* StockQuoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502BB99E70776BDFC713119A /* StockQuoteService.swift */; };
 /* End PBXBuildFile section */
@@ -104,6 +108,10 @@
 		4E7905E81BB4F864001AE3FE /* Stock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stock.swift; sourceTree = "<group>"; };
 		4E9AD2361BB5216900A5CB8D /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		4E9AD2381BB5250900A5CB8D /* EditHoldingDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditHoldingDelegate.swift; sourceTree = "<group>"; };
+		4E9AD23A1BB60DB800A5CB8D /* ExchangeRateService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExchangeRateService.swift; sourceTree = "<group>"; };
+		4E9AD23C1BB61D7000A5CB8D /* ExchangeRateListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExchangeRateListener.swift; sourceTree = "<group>"; };
+		4E9AD23E1BB61F5C00A5CB8D /* FixerExchangeRateService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixerExchangeRateService.swift; sourceTree = "<group>"; };
+		4E9AD2401BB629D000A5CB8D /* NSDateComparison.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateComparison.swift; sourceTree = "<group>"; };
 		502BB413884BBA78DBD7FF6E /* YahooStockQuoteService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YahooStockQuoteService.swift; sourceTree = "<group>"; };
 		502BB99E70776BDFC713119A /* StockQuoteService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockQuoteService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -161,13 +169,13 @@
 		4E193FFC1BB15F41004423F7 /* Portfolio */ = {
 			isa = PBXGroup;
 			children = (
+				4E1940031BB15F42004423F7 /* Main.storyboard */,
 				4E19404D1BB3C14A004423F7 /* Controller */,
 				4E1940401BB244B4004423F7 /* Service */,
 				4E1940391BB230DA004423F7 /* Util */,
 				4E1940321BB16A05004423F7 /* View */,
 				4E19402F1BB16416004423F7 /* Model */,
 				4E193FFD1BB15F42004423F7 /* AppDelegate.swift */,
-				4E1940031BB15F42004423F7 /* Main.storyboard */,
 				4E1940061BB15F42004423F7 /* Assets.xcassets */,
 				4E1940081BB15F42004423F7 /* LaunchScreen.storyboard */,
 				4E19400B1BB15F42004423F7 /* Info.plist */,
@@ -218,6 +226,7 @@
 				4E19403A1BB230E4004423F7 /* Util.swift */,
 				4E19403E1BB23F71004423F7 /* Colours.swift */,
 				4E9AD2361BB5216900A5CB8D /* UIView.swift */,
+				4E9AD2401BB629D000A5CB8D /* NSDateComparison.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -228,6 +237,9 @@
 				502BB99E70776BDFC713119A /* StockQuoteService.swift */,
 				502BB413884BBA78DBD7FF6E /* YahooStockQuoteService.swift */,
 				4E19404B1BB2B155004423F7 /* UserHoldingsService.swift */,
+				4E9AD23A1BB60DB800A5CB8D /* ExchangeRateService.swift */,
+				4E9AD23E1BB61F5C00A5CB8D /* FixerExchangeRateService.swift */,
+				4E9AD23C1BB61D7000A5CB8D /* ExchangeRateListener.swift */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -409,7 +421,11 @@
 				4E1940311BB1643D004423F7 /* Holding.swift in Sources */,
 				4E1940001BB15F42004423F7 /* MasterViewController.swift in Sources */,
 				4E19403B1BB230E4004423F7 /* Util.swift in Sources */,
+				4E9AD23F1BB61F5C00A5CB8D /* FixerExchangeRateService.swift in Sources */,
+				4E9AD23D1BB61D7000A5CB8D /* ExchangeRateListener.swift in Sources */,
 				4E19402E1BB162AC004423F7 /* BaseSplitViewController.swift in Sources */,
+				4E9AD2411BB629D000A5CB8D /* NSDateComparison.swift in Sources */,
+				4E9AD23B1BB60DB800A5CB8D /* ExchangeRateService.swift in Sources */,
 				4E1940531BB3C236004423F7 /* SearchResultsViewController.swift in Sources */,
 				4E193FFE1BB15F42004423F7 /* AppDelegate.swift in Sources */,
 				4E1940571BB3EB66004423F7 /* StockSearchResult.swift in Sources */,
