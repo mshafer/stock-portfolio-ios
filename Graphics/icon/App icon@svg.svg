@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="120px" height="120px" viewBox="0 0 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.3 (12081) - http://www.bohemiancoding.com/sketch -->
+    <title>App icon@svg</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Artboard" sketch:type="MSArtboardGroup" transform="translate(-140.000000, -90.000000)">
+            <path d="M180.799999,90 C167.5,90 163.25,90 157.25,92 C150.18,94.5 144.5,100.18 142,107.25 C140,113.25 140,117.5 140,130.799999 C140,130.799999 140,169.199997 140,169.199997 C140,182.5 140,186.75 142,192.75 C144.504639,199.82 150.18,205.5 157.25,208 C163.25,210 167.5,210 180.799999,210 L219.199997,210 C232.5,210 236.75,210 242.75,208 C249.82,205.5 255.5,199.82 258,192.75 C260,186.75 260,182.5 260,169.199997 L260,130.799999 C260,117.5 260,113.25 258,107.25 C255.5,100.25 249.739998,94.5 242.739998,92 C236.739998,90 232.5,90 219.199997,90 C226.199997,90 180.799999,90 180.799999,90 Z" id="App-icon" fill="#002933" sketch:type="MSShapeGroup"></path>
+            <polygon id="Polygon-1" fill="#E5000F" sketch:type="MSShapeGroup" points="217.977206 132.021234 239.435793 168.433434 196.518619 168.433434 "></polygon>
+            <polygon id="Polygon-1-Copy" fill="#53D76A" sketch:type="MSShapeGroup" points="183.342449 131.7252 204.801036 168.1374 161.883862 168.1374 "></polygon>
+        </g>
+    </g>
+</svg>
