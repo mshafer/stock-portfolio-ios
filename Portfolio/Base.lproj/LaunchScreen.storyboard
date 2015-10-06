@@ -16,12 +16,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="BUd-6t-g52">
-                                <rect key="frame" x="156" y="293" width="62" height="35"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="BUd-6t-g52">
+                                <rect key="frame" x="141" y="284.5" width="93" height="52"/>
                                 <animations/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="PORTFOLIO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PYz-dY-Ywn">
-                                <rect key="frame" x="137" y="336" width="101" height="22"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PORTFOLIO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PYz-dY-Ywn">
+                                <rect key="frame" x="137" y="340" width="101" height="21.5"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -30,6 +30,12 @@
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.0" green="0.16078431372549018" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="BUd-6t-g52" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="04C-9a-FbV"/>
+                            <constraint firstItem="PYz-dY-Ywn" firstAttribute="centerX" secondItem="BUd-6t-g52" secondAttribute="centerX" id="hyF-O3-8E4"/>
+                            <constraint firstItem="BUd-6t-g52" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-23" id="lid-eh-wm7"/>
+                            <constraint firstItem="PYz-dY-Ywn" firstAttribute="top" secondItem="BUd-6t-g52" secondAttribute="bottom" constant="3.5" id="wjv-uF-9iU"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>

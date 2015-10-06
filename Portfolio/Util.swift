@@ -91,7 +91,8 @@ class Util {
         "THB": NSLocale(localeIdentifier: "th_TH"),
         "TRY": NSLocale(localeIdentifier: "tr_TR"),
         "USD": NSLocale(localeIdentifier: "en_US"),
-        "ZAR": NSLocale(localeIdentifier: "en_ZA")
+        "ZAR": NSLocale(localeIdentifier: "en_ZA"),
+        "EUR": NSLocale(localeIdentifier: "fr_FR")
     ]
     
     

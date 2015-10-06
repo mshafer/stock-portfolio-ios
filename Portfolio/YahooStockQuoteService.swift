@@ -152,7 +152,8 @@ class YahooStockQuoteService: StockQuoteService {
                 case .Success(let responseText):
                     let json = self.extractJsonFromYahooApiSearchResponse(responseText)
                     self.handleYahooApiSearchResponse(json!, onCompletion: onCompletion)
-                case .Failure(_):
+                case .Failure(let error):
+                    print("Search to Yahoo failed: \(error)")
                     onError()
                 }
         }
@@ -177,6 +178,7 @@ class YahooStockQuoteService: StockQuoteService {
         Convert the JSON list of responses into StockSearchResult instances and call the completion handler
     */
     private func handleYahooApiSearchResponse(json: JSON, onCompletion: (holdings: [StockSearchResult]) -> ()) {
+        print("Handling Yahoo Search API response")
         if let resultList = json["ResultSet"]["Result"].array {
             var results: [StockSearchResult] = []
             for result in resultList {
@@ -190,6 +192,7 @@ class YahooStockQuoteService: StockQuoteService {
             onCompletion(holdings: results)
             return
         }
+        print("Error with call to search API: \(json)")
         onCompletion(holdings: [])
     }
 
